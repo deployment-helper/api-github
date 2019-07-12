@@ -1,0 +1,20 @@
+{
+  "name": "mcrc-repocreation-github",
+  "version": "1.0.0",
+  "description": "This is a microservice is used to create a new repository to specific github account.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinaymavi/mcrc-repocreation-github.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinaymavi/mcrc-repocreation-github/issues"
+  },
+  "homepage": "https://github.com/vinaymavi/mcrc-repocreation-github#readme"
+}
