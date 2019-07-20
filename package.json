@@ -4,7 +4,9 @@
   "description": "This is a microservice is used to create a new repository to specific github account.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "functions-framework --target=mcrc-repo-github",
+    "develop": "nodemon --exec npm run start"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,14 @@
   "bugs": {
     "url": "https://github.com/vinaymavi/mcrc-repocreation-github/issues"
   },
-  "homepage": "https://github.com/vinaymavi/mcrc-repocreation-github#readme"
+  "homepage": "https://github.com/vinaymavi/mcrc-repocreation-github#readme",
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^1.1.1",
+    "@octokit/rest": "^16.28.4",
+    "dotenv": "^8.0.0"
+  }
 }
