@@ -8,19 +8,22 @@ exports.mcrc_repo_github = function(req, resp) {
   try {
     switch (method) {
       case "POST":
-        if (req.body.repo_name) {
+        if (req.body.repo_name && req.body.access_token) {
+          console.log("CREATION START");
           github
             .create_repo(req.body.repo_name)
             .then(data => {
+              console.log("MAIN THEN CALLING.");
               respJson.body = createSuccessResp("Repo created", data);
               resp.send(respJson); 
             })
             .catch(err => {
                 console.log("CATCH CALLLING"); 
-              throw err.errors[0];
+                respJson.body = createErrResp("Error", err.errors[0]);
+                resp.send(respJson);
             });
         } else {
-          throw new Error("repo_name required");
+          throw new Error("repo_name and access_token required");
         }
         break;
       case "DELETE":
@@ -32,7 +35,8 @@ exports.mcrc_repo_github = function(req, resp) {
               resp.send(respJson);
             })
             .catch(err => {
-              throw err.errors[0];
+              respJson.body = createErrResp("Error", err.errors[0]);
+              resp.send(respJson);
             });
         } else {
           throw new Error("user_name and repo_name required");
@@ -45,6 +49,7 @@ exports.mcrc_repo_github = function(req, resp) {
     console.log("#############################################");
     console.log(error);
     respJson.body = createErrResp("Error", error);
+    console.log(respJson.body);
     resp.send(respJson);
   }
 };
@@ -70,6 +75,6 @@ function createSuccessResp(message, data) {
 function createErrResp(message, err) {
   let resp_body = {};
   (resp_body.status = "FAIL"), (resp_body.message = message);
-  resp_body.err = err;
+  resp_body.err = err.toString();
   return resp_body;
 }

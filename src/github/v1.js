@@ -9,20 +9,24 @@ class Github {
   create_repo(repo_name, is_private) {
     return new Promise((resolve, reject) => {
       try {
+        console.log("OUTGOING REQ START");
         this.octokit.repos
           .createForAuthenticatedUser({
             name: repo_name,
             private: is_private
           })
           .then(resp => {
+            console.log("OUTGOING REQ END");
             resolve(resp);
           })
           .catch(err => {
-            console.log(err);
-            throw err;
+            console.log("OUTGOING REQ END WITH ERROR");
+            console.log(err.errors[0]);
+            reject(err);
           });
       } catch (error) {
         console.log(error);
+        console.log("OUTGOING REQ ERROR REJECTED");
         reject(error);
       }
     });
