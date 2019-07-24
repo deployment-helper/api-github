@@ -75,6 +75,6 @@ function createSuccessResp(message, data) {
 function createErrResp(message, err) {
   let resp_body = {};
   (resp_body.status = "FAIL"), (resp_body.message = message);
-  resp_body.err = err.toString();
+  resp_body.err = err;
   return resp_body;
 }
